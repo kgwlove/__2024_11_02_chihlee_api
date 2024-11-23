@@ -1,8 +1,39 @@
 #module
 PI=3.1415926
 
-class Person:
-    pass
+#建立class
+class Person(object):
+    '''
+    我是Person
+    '''
+    #init初始化。
+    def __init__(self,name:str,age:int): #self可以省略
+        self.name = name #attribute
+        self.age = age #attribute
+        
+    #實體方法 instance method。把self傳入echo
+    def echo(self):
+        print (f'我的名字是:{self.name}')
+        print (f'我的年紀是:{self.age}')
+
+
+#Student class繼承Person
+class Student(Person): 
+    def __init__(self,name:str,age:int,score:int):
+        #初始化副類別Person name-name,第一個是引數名稱,第二個是引數值
+        super().__init__(name=name,age=age) 
+        self.__score = score #"__" 意思是private
+
+    @property #property一般只能讀。用來防止改score的值
+    def score(self)->int: #只能傳出值,不能傳入
+        return self.__score
+
+    def echo(self): #overwrite 覆蓋掉上面Person的echo()
+        #執行副類別Person的echo
+        super().echo()
+        print (f'我分數是:{self.score}')
+
+
 
 def bmiequ(weight, height)->tuple[str,float]:
     '''
