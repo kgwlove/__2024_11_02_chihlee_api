@@ -1,4 +1,4 @@
-#module
+#叫做widget的package:資料夾Widget
 PI=3.1415926
 
 class Person:
