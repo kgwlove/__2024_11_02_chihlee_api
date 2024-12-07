@@ -10,3 +10,4 @@ add_selectbox = st.sidebar.selectbox(  #提供站名選擇
 
 
 #執行方法:終端機輸入 $streamlit run lesson6_4.py
+#https://docs.streamlit.io/develop/api-reference/layout/st.sidebar
