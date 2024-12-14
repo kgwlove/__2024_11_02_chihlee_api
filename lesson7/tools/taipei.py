@@ -1,3 +1,5 @@
+#把原來tools.py檔案，放到tools資料夾，建立__init__.py檔案，將codes貼過來。
+#建立package的方法。原來的tools.py要刪除。
 import requests
 from requests import Response
 from io import StringIO
@@ -25,5 +27,3 @@ def get_youbikes() -> list[dict]:
         list_reader:list[dict] = list(reader)
         print(list_reader)
         return list_reader
-    
-#py檔案有自己的記憶體空間,如果出錯    

@@ -24,10 +24,10 @@ else:
 '''
 
 #將上述codes建立function，放到 tools.py，程式改成這樣 
-import tools
+from tools import taipei
 
 try: #用try來接收tools.py內function的錯誤
-    youbike_data:list[dict] = tools.get_youbikes()
+    youbike_data:list[dict] = taipei.get_youbikes()
 except Exception as e:
     print(e)
 else:        
