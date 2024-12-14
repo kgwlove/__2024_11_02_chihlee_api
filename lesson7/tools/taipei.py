@@ -5,7 +5,9 @@ from requests import Response
 from io import StringIO
 from csv import DictReader
 from requests.exceptions import RequestException,HTTPError
+import streamlit as st
 
+@st.cache_data #cache如果資料沒有變，就不會重新置換記憶體
 def get_youbikes() -> list[dict]:
 
     url = 'https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/csv?page=0&size=1000'
