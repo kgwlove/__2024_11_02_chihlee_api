@@ -23,7 +23,12 @@ else:
     print(list_reader)
 '''
 
-#將上述codes建立function，放到 tools.py 
+#將上述codes建立function，放到 tools.py，程式改成這樣 
 import tools
-youbike_data:list[dict] = tools.get_youbikes()
-print(youbike_data)
+
+try: #用try來接收tools.py內function的錯誤
+    youbike_data:list[dict] = tools.get_youbikes()
+except Exception as e:
+    print(e)
+else:        
+    print(youbike_data)
