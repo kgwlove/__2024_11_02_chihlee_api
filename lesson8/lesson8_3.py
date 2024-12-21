@@ -1,6 +1,9 @@
 from tools import fetch_youbike_data
 import streamlit as st
 import pandas as pd
+import folium
+from streamlit_folium import folium_static
+import pydeck as pdk
 
 youbike_data:list[dict] = fetch_youbike_data()
 area_list = list(set(map(lambda value: value['sarea'], youbike_data)))
@@ -20,11 +23,54 @@ with col2:
                             '可借車輛數':item['sbi'],
                             '可還車輛數':item['bemp'],
                             '營業狀態':item['act'],
-                            'latitute':item['lat'],
-                            'longitude':item['lng']                                                    
+                            'lat':float(item['lat']),
+                            'lon':float(item['lng'])                                                    
                              } for item in filter_list]
     st.dataframe(show_data)    
 
+
+#showing map
+# locations = [[item['lat'], item['lon']] for item in show_data]
+# if len(locations) > 0:
+#     st.map(pd.DataFrame(locations, columns=['lat', 'lon']))
+
+
+# 替換原有的地圖顯示程式碼
+
+# 建立包含站點資訊的 DataFrame
+map_data = pd.DataFrame({
+    'latitude': [item['lat'] for item in show_data],
+    'longitude': [item['lon'] for item in show_data],
+    'name': [item['站點'] for item in show_data]
+})
+
+# 顯示地圖
+if not map_data.empty:
+    st.map(map_data)
+    
+    # 在地圖下方顯示站點名稱和位置對照
+    for idx, row in map_data.iterrows():
+        st.text(f"站點: {row['name']} (緯度: {row['latitude']:.4f}, 經度: {row['longitude']:.4f})")
+
+
+
+# if len(show_data) > 0:
+#     # 建立地圖，以第一筆資料為中心點
+#     m = folium.Map(
+#         location=[show_data[0]['lat'], show_data[0]['lon']],
+#         zoom_start=14
+#     )
+    
+#     # 加入所有站點標記
+#     for item in show_data:
+#         folium.Marker(
+#             [item['lat'], item['lon']],
+#             popup=item['站點'],
+#             tooltip=item['站點']
+#         ).add_to(m)
+    
+#     # 顯示地圖
+#     folium_static(m)
 
 
 
