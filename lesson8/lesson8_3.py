@@ -29,28 +29,28 @@ with col2:
     st.dataframe(show_data)    
 
 
-#showing map
-# locations = [[item['lat'], item['lon']] for item in show_data]
-# if len(locations) > 0:
-#     st.map(pd.DataFrame(locations, columns=['lat', 'lon']))
+showing map
+locations = [[item['lat'], item['lon']] for item in show_data]
+if len(locations) > 0:
+    st.map(pd.DataFrame(locations, columns=['lat', 'lon']))
 
 
-# 替換原有的地圖顯示程式碼
+# # 替換原有的地圖顯示程式碼
 
-# 建立包含站點資訊的 DataFrame
-map_data = pd.DataFrame({
-    'latitude': [item['lat'] for item in show_data],
-    'longitude': [item['lon'] for item in show_data],
-    'name': [item['站點'] for item in show_data]
-})
+# # 建立包含站點資訊的 DataFrame
+# map_data = pd.DataFrame({
+#     'latitude': [item['lat'] for item in show_data],
+#     'longitude': [item['lon'] for item in show_data],
+#     'name': [item['站點'] for item in show_data]
+# })
 
-# 顯示地圖
-if not map_data.empty:
-    st.map(map_data)
+# # 顯示地圖
+# if not map_data.empty:
+#     st.map(map_data)
     
-    # 在地圖下方顯示站點名稱和位置對照
-    for idx, row in map_data.iterrows():
-        st.text(f"站點: {row['name']} (緯度: {row['latitude']:.4f}, 經度: {row['longitude']:.4f})")
+#     # 在地圖下方顯示站點名稱和位置對照
+#     for idx, row in map_data.iterrows():
+#         st.text(f"站點: {row['name']} (緯度: {row['latitude']:.4f}, 經度: {row['longitude']:.4f})")
 
 
 
